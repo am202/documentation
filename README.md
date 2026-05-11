@@ -2,7 +2,7 @@
 
 Before:
 ```mermaid
-  flowchart TD
+  flowchart LR
       ExtData[/"IHIE"/]
 
       subgraph onprem["On-Premises Infrastructure"]
@@ -25,7 +25,7 @@ Before:
 
 After Phase 1:
 ```mermaid
-  flowchart TD
+  flowchart LR
       ExtData[/"IHIE"/]
       subgraph onprem["On-Premises Infrastructure"]
           INPCR[("INPCR\n─\nOracle")]
@@ -35,7 +35,7 @@ After Phase 1:
       end
 
       subgraph snowflake["Snowflake"]
-          OMOP_SF[("INPC OMOP Release\n─\nSnowflake")]
+          OMOP_SF[("INPC OMOP Release\nFaster generation of OMOP datasets made possible in this phase")]
       end
 
       Deliveries[/"Dataset Deliveries"/]
@@ -46,7 +46,7 @@ After Phase 1:
       Talend --> OMOP_PG
       Talend --> Registries
       OMOP_PG -.->|"Manual Load"| OMOP_SF
-      OMOP_SF -->|"Faster generation of OMOP datasets made possible in this phase"| Deliveries
+      OMOP_SF --> Deliveries
       Registries --> Deliveries
 
       classDef newNode fill:#d4edda,stroke:#28a745,color:#155724
@@ -55,16 +55,16 @@ After Phase 1:
 
 After Phase 2:
 ```mermaid
-  flowchart TD
+  flowchart LR
       ExtData[/"IHIE"/]                                                            
       subgraph onprem["On-Premises Infrastructure"]
           INPCR[("INPCR\n─\nOracle")]
       end                                                                                           
       subgraph snowflake["Snowflake"]
-          INPCR_SF[("INPCR\n─\nSnowflake")]
-          dbt[["dbt"]]
-          OMOP_SF[("INPC OMOP Release\n─\nSnowflake")]
-          Registries_SF[("Peel-off OMOP\nRegistries\n─\nSnowflake")]
+          INPCR_SF[("INPC\nLanding")]
+          dbt[["dbt\nFaster transformation to OMOP made possible in this phase"]]
+          OMOP_SF[("INPC OMOP\nRelease")]
+          Registries_SF[("Peel-off OMOP\nRegistries")]
       end
 
       Deliveries[/"Dataset Deliveries"/]
@@ -72,7 +72,7 @@ After Phase 2:
       ExtData --> INPCR
       INPCR --> Deliveries
       INPCR -.->|"Manual Load"| INPCR_SF
-      INPCR_SF -->|"Faster transformation to OMOP made possible in this phase"| dbt
+      INPCR_SF --> dbt
       dbt --> OMOP_SF
       dbt --> Registries_SF
       OMOP_SF --> Deliveries
@@ -84,24 +84,24 @@ After Phase 2:
 
 After Phase 3:
 ```mermaid
-  flowchart TD
+  flowchart LR
       ExtData[/"IHIE"/]                                                            
       subgraph onprem["On-Premises Infrastructure"]
           INPCR[("INPCR\n─\nOracle")]
       end                                                                                           
       subgraph snowflake["Snowflake"]
-          INPCR_SF[("INPCR\n─\nSnowflake")]
+          INPCR_SF[("INPCR\nSnowflake")]
           dbt[["dbt"]]
-          OMOP_SF[("INPC OMOP Release\n─\nSnowflake")]
-          Registries_SF[("Peel-off OMOP\nRegistries\n─\nSnowflake")]
+          OMOP_SF[("INPC OMOP\nRelease")]
+          Registries_SF[("Peel-off OMOP\nRegistries")]
       end
 
-      Replication[/"Data Replication Solution"/]
-      Deliveries[/"Dataset Deliveries"/]
+      Replication[/"Data Replication Solution\nAutomated frequent data replication made possible in this phase"/]
+      Deliveries[/"Dataset\nDeliveries"/]
 
       ExtData --> INPCR
       INPCR --> Deliveries
-      INPCR -->|"Automated frequent data replication made possible in this phase"| Replication
+      INPCR --> Replication
       Replication -->INPCR_SF
       INPCR_SF --> dbt
       dbt --> OMOP_SF
