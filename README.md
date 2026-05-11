@@ -96,7 +96,7 @@ After Phase 3:
           Registries_SF[("Peel-off OMOP\nRegistries")]
       end
 
-      Replication[/"Data Replication Solution\nAutomated frequent data replication made possible in this phase"/]
+      Replication[/"Data Replication\nSolution\nAutomated\nfrequent data\nreplication\nmade possible\nin this phase"/]
       Deliveries[/"Dataset\nDeliveries"/]
 
       ExtData --> INPCR
