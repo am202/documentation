@@ -1,7 +1,8 @@
 # documentation
 
 ```mermaid
-  flowchart TD                                                                                            ExtData[/"External Data Sources"/]
+  flowchart TD
+      ExtData[/"External Data Sources"/]
 
       subgraph onprem["On-Premises Infrastructure"]
           INPCR[("INPCR\n─\nOracle")]
