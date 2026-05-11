@@ -1,5 +1,6 @@
 # documentation
 
+```mermaid
   flowchart TD                                                                                            ExtData[/"External Data Sources"/]
 
       subgraph onprem["On-Premises Infrastructure"]
@@ -19,3 +20,4 @@
       Talend --> Registries
       OMOP -->|"other datasets"| Analysts
       Analysts --> Deliveries
+```
