@@ -1,5 +1,6 @@
 # documentation
 
+Before:
 ```mermaid
   flowchart TD
       ExtData[/"IHIE"/]
@@ -22,6 +23,7 @@
       Registries --> Deliveries
 ```
 
+After Phase 1:
 ```mermaid
   flowchart TD
       ExtData[/"IHIE"/]
@@ -51,6 +53,7 @@
       class OMOP_SF newNode
 ```
 
+After Phase 2:
 ```mermaid
   flowchart TD
       ExtData[/"IHIE"/]                                                            
@@ -77,4 +80,35 @@
 
       classDef newNode fill:#d4edda,stroke:#28a745,color:#155724
       class INPCR_SF,dbt,Registries_SF newNode
+```
+
+After Phase 3:
+```mermaid
+  flowchart TD
+      ExtData[/"IHIE"/]                                                            
+      subgraph onprem["On-Premises Infrastructure"]
+          INPCR[("INPCR\n─\nOracle")]
+      end                                                                                           
+      subgraph snowflake["Snowflake"]
+          INPCR_SF[("INPCR\n─\nSnowflake")]
+          dbt[["dbt"]]
+          OMOP_SF[("INPC OMOP Release\n─\nSnowflake")]
+          Registries_SF[("Peel-off OMOP\nRegistries\n─\nSnowflake")]
+      end
+
+      Replication[/"Data Replication Solution"/]
+      Deliveries[/"Dataset Deliveries"/]
+
+      ExtData --> INPCR
+      INPCR --> Deliveries
+      INPCR -->|"Automated frequent data replication made possible in this phase"| Replication
+      Replication -->INPCR_SF
+      INPCR_SF --> dbt
+      dbt --> OMOP_SF
+      dbt --> Registries_SF
+      OMOP_SF --> Deliveries
+      Registries_SF --> Deliveries
+
+      classDef newNode fill:#d4edda,stroke:#28a745,color:#155724
+      class Replication newNode
 ```
