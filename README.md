@@ -30,15 +30,15 @@ After Phase 1:
       subgraph onprem["On-Premises Infrastructure"]
           INPCR[("INPCR\n─\nOracle")]
           Talend[["Talend ETL"]]
-          OMOP_PG[("INPC OMOP Release\n─\nPostgres")]
+          OMOP_PG[("INPC OMOP\nRelease\n─\nPostgres")]
           Registries[("Peel-off OMOP\nRegistries\n─\nPostgres")]
       end
 
       subgraph snowflake["Snowflake"]
-          OMOP_SF[("INPC OMOP Release\nFaster generation of OMOP datasets made possible in this phase")]
+          OMOP_SF[("INPC OMOP Release\nFaster generation\nof OMOP datasets\nmade possible\nin this phase")]
       end
 
-      Deliveries[/"Dataset Deliveries"/]
+      Deliveries[/"Dataset\nDeliveries"/]
 
       ExtData --> INPCR
       INPCR --> Talend
@@ -62,12 +62,12 @@ After Phase 2:
       end                                                                                           
       subgraph snowflake["Snowflake"]
           INPCR_SF[("INPC\nLanding")]
-          dbt[["dbt\nFaster transformation to OMOP made possible in this phase"]]
+          dbt[["dbt\nFaster\ntransformation\nto OMOP made\npossible in this\nphase"]]
           OMOP_SF[("INPC OMOP\nRelease")]
           Registries_SF[("Peel-off OMOP\nRegistries")]
       end
 
-      Deliveries[/"Dataset Deliveries"/]
+      Deliveries[/"Dataset\nDeliveries"/]
 
       ExtData --> INPCR
       INPCR --> Deliveries
