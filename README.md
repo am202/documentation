@@ -35,8 +35,9 @@ After Phase 1:
       end
 
       subgraph snowflake["Snowflake"]
-          OMOP_SF[("INPC OMOP Release\nFaster generation\nof OMOP datasets\nmade possible\nin this phase")]
+          OMOP_SF[("INPC OMOP Release\n(faster generation\nof OMOP datasets\nmade possible\nin this phase)")]
       end
+      style snowflake fill:#bbddff
 
       Deliveries[/"Dataset\nDeliveries"/]
 
@@ -62,10 +63,11 @@ After Phase 2:
       end                                                                                           
       subgraph snowflake["Snowflake"]
           INPCR_SF[("INPC\nLanding")]
-          dbt[["dbt\nFaster\ntransformation\nto OMOP made\npossible in this\nphase"]]
+          dbt[["dbt\n(faster\ntransformation\nto OMOP made\npossible in this\nphase)"]]
           OMOP_SF[("INPC OMOP\nRelease")]
           Registries_SF[("Peel-off OMOP\nRegistries")]
       end
+      style snowflake fill:#bbddff
 
       Deliveries[/"Dataset\nDeliveries"/]
 
@@ -95,8 +97,9 @@ After Phase 3:
           OMOP_SF[("INPC OMOP\nRelease")]
           Registries_SF[("Peel-off OMOP\nRegistries")]
       end
+      style snowflake fill:#bbddff
 
-      Replication[/"Data Replication\nSolution\nAutomated\nfrequent data\nreplication\nmade possible\nin this phase"/]
+      Replication[["Data Replication\nSolution\n(frequent\nautomated data\nreplication\nmade possible\nin this phase)"]]
       Deliveries[/"Dataset\nDeliveries"/]
 
       ExtData --> INPCR
